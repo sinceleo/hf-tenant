@@ -1,5 +1,5 @@
 {
-  "name": "sinceleo/hyperf-tenancy",
+  "name": "sinceleo/hf-tenant",
   "description": "hyperf多租户",
   "type": "library",
   "license": "MIT",
