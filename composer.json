@@ -1,0 +1,61 @@
+{
+  "name": "nahuomall/hyperf-tenancy",
+  "description": "hyperf多租户",
+  "type": "library",
+  "license": "MIT",
+  "keywords": [
+    "php",
+    "hyperf"
+  ],
+  "suggest": {
+    "ext-redis": "Required to use Redis Client."
+  },
+  "autoload": {
+    "psr-4": {
+      "Nahuomall\\HyperfTenancy\\": "src/"
+    },
+    "files": [
+      "src/function.php"
+    ]
+  },
+  "authors": [
+    {
+      "name": "since"
+    },
+    {
+      "name": "heqiangchun"
+    }
+  ],
+  "require": {
+    "php": ">=8.2",
+    "hyperf/engine": "^2.8",
+    "hyperf/coroutine": "^3.1",
+    "hyperf/logger": "^3.1",
+    "hyperf/http-server": "^3.1",
+    "hyperf/di": "^3.1",
+    "hyperf/cache": "^3.1",
+    "guzzlehttp/guzzle": "^7.7",
+    "hyperf/paginator": "^3.1",
+    "hyperf/resource": "^3.1",
+    "hyperf/framework": "^3.1",
+    "hyperf/database": "^3.1",
+    "hyperf/db-connection": "^3.1",
+    "hyperf/config": "^3.1",
+    "hyperf/redis": "^3.1",
+    "hyperf/model-cache": "^3.1",
+    "hyperf/amqp": "^3.1",
+    "hyperf/async-queue": "^3.1"
+  },
+  "require-dev": {
+    "swoole/ide-helper": "^5.0",
+    "friendsofphp/php-cs-fixer": "^3.62"
+  },
+  "extra": {
+    "hyperf": {
+      "config": "Nahuomall\\HyperfTenancy\\TenancyConfigProvider"
+    }
+  },
+  "scripts": {
+    "cs-fix": "php-cs-fixer fix src"
+  }
+}

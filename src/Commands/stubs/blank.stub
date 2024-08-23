@@ -1,0 +1,24 @@
+<?php
+
+use Hyperf\Database\Schema\Schema;
+use Hyperf\Database\Schema\Blueprint;
+use Nahuomall\HyperfTenancy\Kernel\Migrations\TenancyMigration;
+
+class DummyClass extends TenancyMigration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        //
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        //
+    }
+}

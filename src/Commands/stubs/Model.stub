@@ -1,0 +1,28 @@
+<?php
+
+declare(strict_types=1);
+
+namespace %NAMESPACE%;
+
+use Nahuomall\HyperfTenancy\Kernel\Tenant\TenancyConnection;
+
+%USES%
+class %CLASS% extends %INHERITANCE%
+{
+    use TenancyConnection;
+
+    /**
+     * The table associated with the model.
+     */
+    protected ?string $table = '%TABLE%';
+
+    /**
+     * The attributes that are mass assignable.
+     */
+    protected array $fillable = [];
+
+    /**
+     * The attributes that should be cast to native types.
+     */
+    protected array $casts = [];
+}
