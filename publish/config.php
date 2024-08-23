@@ -21,6 +21,8 @@ return [
         '127.0.0.1',
         'localhost',
     ],
+    // 忽略的路由
+    'ignore_path' => [],
     'database' => [
         // 不允许为default
         'central_connection' => env('TENANCY_CENTRAL_CONNECTION', 'central'),

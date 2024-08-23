@@ -18,6 +18,7 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use SinceLeo\Tenancy\Kernel\Exceptions\TenancyException;
+use function Hyperf\Config\config;
 
 class TenantMiddleware implements MiddlewareInterface
 {
@@ -36,6 +37,15 @@ class TenantMiddleware implements MiddlewareInterface
      */
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
+        $ignorePath = config('tenancy.ignore_path');
+
+        $path = $request->getUri()->getPath();
+
+        // 忽略的路径
+        if (!empty($ignorePath) && in_array($path, $ignorePath)) {
+            return $handler->handle($request);
+        }
+
         tenancy()->init();
 
         return $handler->handle($request);
