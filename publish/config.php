@@ -9,8 +9,8 @@ declare(strict_types=1);
  * @contact  root@imoi.cn
  * @license  https://github.com/mineadmin/MineAdmin/blob/master/LICENSE
  */
-use Nahuomall\HyperfTenancy\Kernel\Tenant\Models\Domain;
-use Nahuomall\HyperfTenancy\Kernel\Tenant\Models\Tenants;
+use SinceLeo\Tenancy\Kernel\Tenant\Models\Domain;
+use SinceLeo\Tenancy\Kernel\Tenant\Models\Tenants;
 
 return [
     'tenant_model' => Tenants::class,

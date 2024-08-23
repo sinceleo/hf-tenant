@@ -10,15 +10,15 @@ declare(strict_types=1);
  * @license  https://github.com/mineadmin/MineAdmin/blob/master/LICENSE
  */
 
-namespace Nahuomall\HyperfTenancy\Kernel\Amqp\AsyncQueue\Jobs;
+namespace SinceLeo\Tenancy\Kernel\Amqp\AsyncQueue\Jobs;
 
 use Hyperf\Amqp\Message\ProducerMessage;
 use Hyperf\Amqp\Producer;
 use Hyperf\AsyncQueue\Job;
 use Hyperf\Context\ApplicationContext;
-use Nahuomall\HyperfTenancy\Kernel\Exceptions\TenancyException;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
+use SinceLeo\Tenancy\Kernel\Exceptions\TenancyException;
 
 /**
  * 延迟队列
@@ -53,7 +53,6 @@ class DelayMqJob extends Job
 
     /**
      * 设置重试次数.
-     * @param int $maxAttempts
      */
     public function setMaxAttempts(int $maxAttempts): static
     {

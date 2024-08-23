@@ -10,7 +10,7 @@ declare(strict_types=1);
  * @license  https://github.com/mineadmin/MineAdmin/blob/master/LICENSE
  */
 
-namespace Nahuomall\HyperfTenancy\Commands;
+namespace SinceLeo\Tenancy\Commands;
 
 use Hyperf\CodeParser\Project;
 use Hyperf\Database\Commands\Ast\ModelUpdateVisitor;
@@ -19,12 +19,12 @@ use Hyperf\Database\Commands\ModelData;
 use Hyperf\Database\Commands\ModelOption;
 use Hyperf\Database\Model\Model;
 use Hyperf\Stringable\Str;
-use Nahuomall\HyperfTenancy\Concerns\HasATenantsOption;
-use Nahuomall\HyperfTenancy\Kernel\Exceptions\TenancyException;
-use Nahuomall\HyperfTenancy\Kernel\Tenancy;
 use PhpParser\NodeTraverser;
 use PhpParser\NodeVisitor\CloningVisitor;
 use Psr\Container\ContainerInterface;
+use SinceLeo\Tenancy\Concerns\HasATenantsOption;
+use SinceLeo\Tenancy\Kernel\Exceptions\TenancyException;
+use SinceLeo\Tenancy\Kernel\Tenancy;
 
 use function Hyperf\Support\make;
 
@@ -77,11 +77,6 @@ class ModelMigration extends ModelCommand
             ->replaceTable($stub, $table);
     }
 
-    /**
-     * @param string $table
-     * @param ModelOption $option
-     * @return void
-     */
     protected function createModel(string $table, ModelOption $option): void
     {
         $builder = $this->getSchemaBuilder($option->getPool());

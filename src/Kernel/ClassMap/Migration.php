@@ -12,7 +12,7 @@ declare(strict_types=1);
 
 namespace Hyperf\Database\Migrations;
 
-use Nahuomall\HyperfTenancy\Kernel\Tenancy;
+use SinceLeo\Tenancy\Kernel\Tenancy;
 
 abstract class Migration
 {

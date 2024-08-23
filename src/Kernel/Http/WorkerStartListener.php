@@ -10,7 +10,7 @@ declare(strict_types=1);
  * @license  https://github.com/mineadmin/MineAdmin/blob/master/LICENSE
  */
 
-namespace Nahuomall\HyperfTenancy\Kernel\Http;
+namespace SinceLeo\Tenancy\Kernel\Http;
 
 use Hyperf\Framework\Logger\StdoutLogger;
 use Hyperf\Server\Listener\AfterWorkerStartListener;

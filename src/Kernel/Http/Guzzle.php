@@ -10,7 +10,7 @@ declare(strict_types=1);
  * @license  https://github.com/mineadmin/MineAdmin/blob/master/LICENSE
  */
 
-namespace Nahuomall\HyperfTenancy\Kernel\Http;
+namespace SinceLeo\Tenancy\Kernel\Http;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
@@ -25,9 +25,6 @@ trait Guzzle
     private Client $client;
 
     /**
-     * @param string $uri
-     * @param array $data
-     * @return ResponseInterface
      * @throws GuzzleException
      */
     public function post(string $uri, array $data): ResponseInterface
@@ -36,9 +33,6 @@ trait Guzzle
     }
 
     /**
-     * @param string $uri
-     * @param array $data
-     * @return ResponseInterface
      * @throws GuzzleException
      */
     public function get(string $uri, array $data): ResponseInterface
@@ -47,9 +41,6 @@ trait Guzzle
     }
 
     /**
-     * @param string $uri
-     * @param array $data
-     * @return ResponseInterface
      * @throws GuzzleException
      */
     public function put(string $uri, array $data): ResponseInterface
@@ -58,9 +49,6 @@ trait Guzzle
     }
 
     /**
-     * @param string $uri
-     * @param array $data
-     * @return ResponseInterface
      * @throws GuzzleException
      */
     public function delete(string $uri, array $data): ResponseInterface
@@ -68,10 +56,6 @@ trait Guzzle
         return $this->client->delete($uri, $this->mergeData($data));
     }
 
-    /**
-     * @param array $data
-     * @return array
-     */
     private function mergeData(array $data): array
     {
         return array_replace_recursive($this->defaultConfig, $this->userConfig, $data);

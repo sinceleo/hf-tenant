@@ -10,13 +10,13 @@ declare(strict_types=1);
  * @license  https://github.com/mineadmin/MineAdmin/blob/master/LICENSE
  */
 
-namespace Nahuomall\HyperfTenancy\Commands;
+namespace SinceLeo\Tenancy\Commands;
 
 use Hyperf\Database\Commands\Migrations\RollbackCommand;
 use Hyperf\Database\Migrations\Migrator;
-use Nahuomall\HyperfTenancy\Concerns\HasATenantsOption;
-use Nahuomall\HyperfTenancy\Kernel\Exceptions\TenancyException;
-use Nahuomall\HyperfTenancy\Kernel\Tenancy;
+use SinceLeo\Tenancy\Concerns\HasATenantsOption;
+use SinceLeo\Tenancy\Kernel\Exceptions\TenancyException;
+use SinceLeo\Tenancy\Kernel\Tenancy;
 
 class RollbackMigration extends RollbackCommand
 {

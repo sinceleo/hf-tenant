@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace %NAMESPACE%;
 
-use Nahuomall\HyperfTenancy\Kernel\Tenant\TenancyConnection;
+use SinceLeo\Tenancy\Kernel\Tenant\TenancyConnection;
 
 %USES%
 class %CLASS% extends %INHERITANCE%

@@ -10,15 +10,15 @@ declare(strict_types=1);
  * @license  https://github.com/mineadmin/MineAdmin/blob/master/LICENSE
  */
 
-namespace Nahuomall\HyperfTenancy\Kernel\Tenant;
+namespace SinceLeo\Tenancy\Kernel\Tenant;
 
 use Hyperf\Context\ApplicationContext;
 use Hyperf\Context\Context;
 use Hyperf\HttpServer\Contract\RequestInterface;
 use Hyperf\Support\Traits\StaticInstance;
-use Nahuomall\HyperfTenancy\Kernel\Exceptions\TenancyException;
-use Nahuomall\HyperfTenancy\Kernel\Tenancy;
-use Nahuomall\HyperfTenancy\Kernel\Tenant\Models\Tenants as TenantModel;
+use SinceLeo\Tenancy\Kernel\Exceptions\TenancyException;
+use SinceLeo\Tenancy\Kernel\Tenancy;
+use SinceLeo\Tenancy\Kernel\Tenant\Models\Tenants as TenantModel;
 
 class Tenant
 {
@@ -110,6 +110,7 @@ class Tenant
 
     /**
      * 指定租户内执行.
+     * @param mixed $tenants
      * @throws \Exception
      */
     public function runForMultiple($tenants, callable $callable): void

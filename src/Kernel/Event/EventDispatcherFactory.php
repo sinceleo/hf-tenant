@@ -10,7 +10,7 @@ declare(strict_types=1);
  * @license  https://github.com/mineadmin/MineAdmin/blob/master/LICENSE
  */
 
-namespace Nahuomall\HyperfTenancy\Kernel\Event;
+namespace SinceLeo\Tenancy\Kernel\Event;
 
 use Hyperf\Event\EventDispatcher;
 use Psr\Container\ContainerInterface;

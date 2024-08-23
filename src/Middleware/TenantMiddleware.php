@@ -10,14 +10,14 @@ declare(strict_types=1);
  * @license  https://github.com/mineadmin/MineAdmin/blob/master/LICENSE
  */
 
-namespace Nahuomall\HyperfTenancy\Middleware;
+namespace SinceLeo\Tenancy\Middleware;
 
-use Nahuomall\HyperfTenancy\Kernel\Exceptions\TenancyException;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
+use SinceLeo\Tenancy\Kernel\Exceptions\TenancyException;
 
 class TenantMiddleware implements MiddlewareInterface
 {

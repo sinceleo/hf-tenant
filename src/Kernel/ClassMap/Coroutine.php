@@ -15,9 +15,9 @@ namespace Hyperf\Coroutine;
 use Hyperf\Engine\Coroutine as Co;
 use Hyperf\Engine\Exception\CoroutineDestroyedException;
 use Hyperf\Engine\Exception\RunningInNonCoroutineException;
-use Nahuomall\HyperfTenancy\Kernel\Context\Coroutine as Go;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
+use SinceLeo\Tenancy\Kernel\Context\Coroutine as Go;
 
 class Coroutine
 {

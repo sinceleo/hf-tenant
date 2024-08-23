@@ -10,7 +10,7 @@ declare(strict_types=1);
  * @license  https://github.com/mineadmin/MineAdmin/blob/master/LICENSE
  */
 
-namespace Nahuomall\HyperfTenancy\Kernel\Migrations;
+namespace SinceLeo\Tenancy\Kernel\Migrations;
 
 class MigrationCreator extends \Hyperf\Database\Migrations\MigrationCreator
 {

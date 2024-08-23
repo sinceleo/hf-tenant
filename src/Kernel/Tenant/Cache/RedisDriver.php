@@ -10,10 +10,10 @@ declare(strict_types=1);
  * @license  https://github.com/mineadmin/MineAdmin/blob/master/LICENSE
  */
 
-namespace Nahuomall\HyperfTenancy\Kernel\Tenant\Cache;
+namespace SinceLeo\Tenancy\Kernel\Tenant\Cache;
 
-use Nahuomall\HyperfTenancy\Kernel\Exceptions\TenancyException;
 use Psr\Container\ContainerInterface;
+use SinceLeo\Tenancy\Kernel\Exceptions\TenancyException;
 
 class RedisDriver extends \Hyperf\Cache\Driver\RedisDriver
 {

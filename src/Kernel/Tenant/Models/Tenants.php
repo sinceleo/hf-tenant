@@ -10,15 +10,15 @@ declare(strict_types=1);
  * @license  https://github.com/mineadmin/MineAdmin/blob/master/LICENSE
  */
 
-namespace Nahuomall\HyperfTenancy\Kernel\Tenant\Models;
+namespace SinceLeo\Tenancy\Kernel\Tenant\Models;
 
 use Carbon\Carbon;
 use Hyperf\Collection\Collection;
 use Hyperf\Context\Context;
 use Hyperf\Database\Model\SoftDeletes;
 use Hyperf\DbConnection\Model\Model;
-use Nahuomall\HyperfTenancy\Kernel\Exceptions\TenancyException;
-use Nahuomall\HyperfTenancy\Kernel\Tenant\CentralConnection;
+use SinceLeo\Tenancy\Kernel\Exceptions\TenancyException;
+use SinceLeo\Tenancy\Kernel\Tenant\CentralConnection;
 
 /**
  * @property string $id

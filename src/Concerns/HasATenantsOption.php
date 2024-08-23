@@ -10,17 +10,16 @@ declare(strict_types=1);
  * @license  https://github.com/mineadmin/MineAdmin/blob/master/LICENSE
  */
 
-namespace Nahuomall\HyperfTenancy\Concerns;
+namespace SinceLeo\Tenancy\Concerns;
 
-use Nahuomall\HyperfTenancy\Kernel\Exceptions\TenancyException;
-use Nahuomall\HyperfTenancy\Kernel\Tenancy;
+use SinceLeo\Tenancy\Kernel\Exceptions\TenancyException;
+use SinceLeo\Tenancy\Kernel\Tenancy;
 use Symfony\Component\Console\Input\InputOption;
 
 trait HasATenantsOption
 {
     /**
      * Get the console command options.
-     * @return array
      */
     protected function getOptions(): array
     {
@@ -31,7 +30,6 @@ trait HasATenantsOption
 
     /**
      * Get the tenants.
-     * @return mixed
      * @throws TenancyException
      */
     protected function getTenants(): mixed

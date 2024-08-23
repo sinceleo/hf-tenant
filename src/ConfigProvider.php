@@ -10,17 +10,20 @@ declare(strict_types=1);
  * @license  https://github.com/mineadmin/MineAdmin/blob/master/LICENSE
  */
 
-namespace Nahuomall\HyperfTenancy;
+namespace SinceLeo\Tenancy;
 
 use Hyperf\Database\ConnectionResolverInterface;
-use Nahuomall\HyperfTenancy\Kernel\Tenant\ConnectionResolver;
+use Psr\EventDispatcher\EventDispatcherInterface;
+use SinceLeo\Tenancy\Kernel\Event\EventDispatcherFactory;
+use SinceLeo\Tenancy\Kernel\Tenant\ConnectionResolver;
 
-class TenancyConfigProvider
+class ConfigProvider
 {
     public function __invoke(): array
     {
         return [
             'dependencies' => [
+                EventDispatcherInterface::class => EventDispatcherFactory::class,
                 ConnectionResolverInterface::class => ConnectionResolver::class,
             ],
             'commands' => [
@@ -37,6 +40,10 @@ class TenancyConfigProvider
                 'scan' => [
                     'paths' => [
                         __DIR__,
+                    ],
+                    'class_map' => [
+                        Hyperf\Coroutine\Coroutine::class => BASE_PATH . '/Kernel/ClassMap/Coroutine.php',
+                        Hyperf\Database\Migrations\Migration::class => BASE_PATH . '/Kernel/Migrations/Migration.php',
                     ],
                 ],
             ],

@@ -10,21 +10,19 @@ declare(strict_types=1);
  * @license  https://github.com/mineadmin/MineAdmin/blob/master/LICENSE
  */
 
-namespace Nahuomall\HyperfTenancy\Kernel\Amqp;
+namespace SinceLeo\Tenancy\Kernel\Amqp;
 
 use Hyperf\Amqp\Message\ConsumerMessage;
 use Hyperf\Amqp\Packer\Packer;
 use Hyperf\Context\ApplicationContext;
-use Nahuomall\HyperfTenancy\Kernel\Exceptions\TenancyException;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
+use SinceLeo\Tenancy\Kernel\Exceptions\TenancyException;
 
 abstract class TenancyConsumer extends ConsumerMessage
 {
     /**
      * 消息体反序列化.
-     * @param string $data
-     * @return mixed
      * @throws ContainerExceptionInterface
      * @throws NotFoundExceptionInterface
      * @throws TenancyException

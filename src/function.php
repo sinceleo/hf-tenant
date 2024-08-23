@@ -17,11 +17,11 @@ use Hyperf\Paginator\AbstractPaginator;
 use Hyperf\Paginator\LengthAwarePaginator;
 use Hyperf\Redis\RedisProxy;
 use Hyperf\Resource\Json\JsonResource;
-use Nahuomall\HyperfTenancy\Kernel\Tenancy;
-use Nahuomall\HyperfTenancy\Kernel\Tenant\Tenant;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
 use Psr\Container\NotFoundExceptionInterface;
+use SinceLeo\Tenancy\Kernel\Tenancy;
+use SinceLeo\Tenancy\Kernel\Tenant\Tenant;
 
 if (! function_exists('config_base')) {
     function config_base(): ConfigInterface

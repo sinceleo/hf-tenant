@@ -10,20 +10,20 @@ declare(strict_types=1);
  * @license  https://github.com/mineadmin/MineAdmin/blob/master/LICENSE
  */
 
-namespace Nahuomall\HyperfTenancy\Kernel;
+namespace SinceLeo\Tenancy\Kernel;
 
 use Hyperf\Context\ApplicationContext;
 use Hyperf\Context\Context;
 use Hyperf\Redis\RedisFactory;
 use Hyperf\Redis\RedisProxy;
-use Nahuomall\HyperfTenancy\Kernel\Exceptions\TenancyException;
-use Nahuomall\HyperfTenancy\Kernel\Tenant\Cache\CacheManager;
-use Nahuomall\HyperfTenancy\Kernel\Tenant\Models\Domain;
-use Nahuomall\HyperfTenancy\Kernel\Tenant\Models\Tenants as TenantModel;
-use Nahuomall\HyperfTenancy\Kernel\Tenant\Tenant;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use SinceLeo\Tenancy\Kernel\Exceptions\TenancyException;
+use SinceLeo\Tenancy\Kernel\Tenant\Cache\CacheManager;
+use SinceLeo\Tenancy\Kernel\Tenant\Models\Domain;
+use SinceLeo\Tenancy\Kernel\Tenant\Models\Tenants as TenantModel;
+use SinceLeo\Tenancy\Kernel\Tenant\Tenant;
 
 class Tenancy
 {
@@ -78,7 +78,6 @@ class Tenancy
 
     /**
      * 获取扩展数据库链接池.
-     * @return array
      * @throws TenancyException
      */
     public static function extendConnections(): array
@@ -108,8 +107,6 @@ class Tenancy
 
     /**
      * 指定租户内执行.
-     * @param mixed $tenants
-     * @param callable $callable
      * @throws TenancyException
      */
     public static function runForMultiple(mixed $tenants, callable $callable): void
@@ -137,7 +134,6 @@ class Tenancy
 
     /**
      * 租户通用Redis.
-     * @return RedisProxy
      * @throws ContainerExceptionInterface
      * @throws NotFoundExceptionInterface
      * @throws \RedisException|TenancyException

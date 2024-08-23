@@ -10,9 +10,9 @@ declare(strict_types=1);
  * @license  https://github.com/mineadmin/MineAdmin/blob/master/LICENSE
  */
 
-namespace Nahuomall\HyperfTenancy\Kernel\Migrations;
+namespace SinceLeo\Tenancy\Kernel\Migrations;
 
-use Nahuomall\HyperfTenancy\Kernel\Tenancy;
+use SinceLeo\Tenancy\Kernel\Tenancy;
 
 abstract class TenancyMigration
 {

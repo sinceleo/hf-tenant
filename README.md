@@ -1,49 +1,35 @@
-# hyperf-tenancy 安装使用
-```shell
-composer require cmslz/hyperf-tenancy
-```
 
-https://github.com/cmslz/hyperf-tenancy
+<p align="center">
+    <a href="https://tenancyforlaravel.com"><img width="800" src="/art/logo.png" alt="Tenancy for Laravel logo" /></a>
+</p>
+
+# Tenancy for Hyperf
 
 ## 介绍
 
-> 1. 可通过header参数或在GET参数绑定对应租户
->> Header:x-tenant-id:xxxx
-> > GET:tenant = xxx
+> 一个轻量级租户系统，支持多租户，支持跨租户请求，支持跨租户队列，支持跨租户数据库，支持跨租户缓存，支持跨租户日志，支持跨租户事件，支持跨租户路由，支持跨租户服务，支持跨租户配置，支持跨租户中间件，支持跨租户控制器，支持跨租户模型，支持跨租户服务提供者，
 
-## 配置
+> 基于：Laravel Tenancy为灵感开发的一套简易版租户插件，让Hyperf也可以支持多租户，像Laravel Tenancy一样开发单租户业务一样，通过组件实现多租户的模式，做到真正的数据隔离
+> 实现方式：通过中间件实现租户编号的获取，并设置到协程上下文中，通过重写数据库连接，在请求数据库时，自动切换到对应租户的数据库连接
 
-- amqp.php
+## 安装
 
-> \Nahuomall\HyperfTenancy\Kernel\Tenant\AsyncQueue\RedisDriver::class
-
-- annotations.php
-
-```PHP
-return [
-    'scan' => [
-    'class_map' => [
-            Hyperf\Coroutine\Coroutine::class => BASE_PATH . '/vendor/cmslz/hyperf-tenancy/src/Kernel/ClassMap/Coroutine.php',
-            Hyperf\Database\Migrations\Migration::class => BASE_PATH . '/vendor/cmslz/hyperf-tenancy/src/Kernel/Migrations/Migration.php',
-        ]
-    ]
-];
+```shell
+  composer require sinceleo/hyperf-tenancy
 ```
 
-- dependencies.php
+# 配置部分
 
-```PHP
-return [
-    Psr\EventDispatcher\EventDispatcherInterface::class => \Nahuomall\HyperfTenancy\Kernel\Event\EventDispatcherFactory::class,
-    Hyperf\Database\ConnectionResolverInterface::class => \Nahuomall\HyperfTenancy\Kernel\Tenant\ConnectionResolver::class,
-];
+
+## 生成配置文件
+
+```
+php artisan vendor:publish sinceleo/hyperf-tenancy
 ```
 
-- tenancy.php
+## 修改缓存配置
 
-> [config.tenancy](/publish/config.php)
-
-- cache.php
+- cache.php修改为如下配置
 
 ```PHP
 return [
@@ -56,7 +42,7 @@ return [
     ],
     // 租户缓存
     'tenant' => [
-        'driver' => \Nahuomall\HyperfTenancy\Kernel\Tenant\Cache\RedisDriver::class,
+        'driver' => \SinceLeo\Tenancy\Kernel\Tenant\Cache\RedisDriver::class,
         'packer' => Hyperf\Codec\Packer\PhpSerializerPacker::class,
         'prefix' => 'tenant:cache:'
     ],
@@ -64,7 +50,7 @@ return [
 
 ```
 
-- databases.php
+- databases.php 修改为如下配置
 
 ```PHP
 return [
@@ -145,7 +131,7 @@ return [
 ];
 ```
 
-- redis.php
+- redis.php 配置修改为如下配置
 
 ```PHP
 return [
@@ -183,7 +169,15 @@ return [
 
 ## 使用
 
-    在需要使用路由添加中间件 `TenantMiddleware::class`
+    获取租户编号的方式有两种：
+    
+    一、前端接口请求时在header中携带租户编号，如： X-TENANT-ID:xxxx
+
+    二、在请求时通过域名获取租户编号，如：http://baidu.domain.com 内部将通过域名获取租户编号
+    
+    
+- 注：租户编号请在central中央库中进行维护，通过域名识别租户编号需要在central库中的tenant表与domain_tenants表中存在相应配置
+
 
 ### 队列使用
 

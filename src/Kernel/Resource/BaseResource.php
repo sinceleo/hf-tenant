@@ -10,10 +10,10 @@ declare(strict_types=1);
  * @license  https://github.com/mineadmin/MineAdmin/blob/master/LICENSE
  */
 
-namespace Nahuomall\HyperfTenancy\Kernel\Resource;
+namespace SinceLeo\Tenancy\Kernel\Resource;
 
 use Hyperf\Resource\Json\JsonResource;
-use Nahuomall\HyperfTenancy\Kernel\Resource\Src\AnonymousResourceCollection;
+use SinceLeo\Tenancy\Kernel\Resource\Src\AnonymousResourceCollection;
 
 class BaseResource extends JsonResource
 {
