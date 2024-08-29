@@ -82,7 +82,7 @@ return [
         ],
         'commands' => [
             'gen:model' => [
-                'path' => 'App\Kernel\Base\BaseModel',
+                'path' => 'app\Model',
                 'force_casts' => true,
                 'inheritance' => 'Model',
                 'uses' => '',
@@ -140,9 +140,10 @@ return [
         // 扩展链接
         'extend_connections' => explode(',', env('TENANCY_EXTEND_CONNECTIONS', '')),
         // 租户数据库前缀
-        'tenant_prefix' => 'tenant_',
+        'tenant_prefix' => env('TENANCY_TENANT_PREFIX', 'tenant_'),
         // 租户数据库表前缀
-        'tenant_table_prefix' => '',
+        'tenant_table_prefix' => env('TENANCY_TENANT_TABLE_PREFIX', ''),
+        // 基础数据库
         'base_database' => 'base',
     ],
     'cache' => [
