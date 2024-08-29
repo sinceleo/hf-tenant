@@ -42,8 +42,8 @@ class Domain extends Model
 
     /**
      * 获取租户域名.
+     * @param string $tenantId
      * @return string
-     *                Created by since at 2023/2/16 17:46
      */
     public static function domainByTenantId(string $tenantId): string
     {
@@ -56,11 +56,24 @@ class Domain extends Model
         return $scheme . $domain;
     }
 
-    public static function tenantIdByDomain(string $domain)
+    /**
+     * 获取租户id.
+     * @param string $domain 域名
+     * @return string
+     * @throws TenancyException
+     */
+    public static function tenantIdByDomain(string $domain): string
     {
         return (string) self::domainsAll($domain)->tenant_id;
     }
 
+    /**
+     * 获取所有域名.
+     * @param null|string $domain 域名
+     * @param bool $reset 是否重置
+     * @return Collection
+     * @throws TenancyException
+     */
     public static function domainsAll(?string $domain = null, bool $reset = false)
     {
         $domains = Context::get(self::class);

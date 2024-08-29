@@ -28,6 +28,6 @@ class GenMigration extends GenMigrateCommand
     public function __construct(MigrationCreator $creator)
     {
         parent::__construct($creator);
-        parent::setName('tenants:create');
+        parent::setName('tenants:migrate-gen');
     }
 }

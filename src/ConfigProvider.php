@@ -33,6 +33,7 @@ class ConfigProvider
                     Commands\ModelMigration::class,
                     Commands\GenMigration::class,
                     Commands\SeederMigration::class,
+                    Commands\InitTenancy::class,
                 ],
             ],
             'listeners' => [

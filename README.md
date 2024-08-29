@@ -50,47 +50,10 @@ return [
 
 ```
 
-- databases.php 修改为如下配置
+- databases.php 增加如下配置
 
 ```PHP
 return [
-    'default' => [
-        'driver' => env('DB_DRIVER', 'mysql'),
-        'host' => env('DB_HOST', 'localhost'),
-        'port' => env('DB_PORT', 3306),
-        'database' => env('DB_DATABASE', ''),
-        'username' => env('DB_USERNAME', 'root'),
-        'password' => env('DB_PASSWORD', ''),
-        'charset' => env('DB_CHARSET', 'utf8mb4'),
-        'collation' => env('DB_COLLATION', 'utf8mb4_general_ci'),
-        'prefix' => env('DB_CENTRAL_PREFIX', ''),
-        'pool' => [
-            'min_connections' => 1,
-            'max_connections' => 100,
-            'connect_timeout' => 10.0,
-            'wait_timeout' => 3.0,
-            'heartbeat' => -1,
-            'max_idle_time' => (float)env('DB_MAX_IDLE_TIME', 60),
-        ],
-        'cache' => [
-            'handler' => Hyperf\ModelCache\Handler\RedisHandler::class,
-            'cache_key' => '{mc:%s:m:%s}:%s:%s',
-            'prefix' => 'central',
-            'ttl' => 3600 * 24,
-            'empty_model_ttl' => 600,
-            'load_script' => true,
-        ],
-        'commands' => [
-            'gen:model' => [
-                'path' => 'App\Kernel\Base\BaseModel',
-                'force_casts' => true,
-                'inheritance' => 'Model',
-                'uses' => '',
-                'refresh_fillable' => true,
-                'table_mapping' => [],
-            ],
-        ],
-    ],
     'central' => [
         'driver' => env('DB_DRIVER', 'mysql'),
         'host' => env('DB_HOST', 'localhost'),
@@ -131,24 +94,10 @@ return [
 ];
 ```
 
-- redis.php 配置修改为如下配置
+- redis.php 增加如下配置
 
 ```PHP
 return [
-    'default' => [
-        'host' => env('REDIS_HOST', 'localhost'),
-        'auth' => env('REDIS_AUTH', null),
-        'port' => (int)env('REDIS_PORT', 6379),
-        'db' => (int)env('REDIS_DB', 0),
-        'pool' => [
-            'min_connections' => 1,
-            'max_connections' => 10,
-            'connect_timeout' => 10.0,
-            'wait_timeout' => 3.0,
-            'heartbeat' => -1,
-            'max_idle_time' => (float)env('REDIS_MAX_IDLE_TIME', 60),
-        ],
-    ],
     // 租户通用redis
     'tenant' => [
         'host' => env('REDIS_HOST', 'localhost'),
@@ -167,21 +116,53 @@ return [
 ];
 ```
 
-## 使用
+## 初始化
+
+    执行构建租户管理迁移文件  php bin/hyperf.php tenants:init 
+
+- 注：必须配置好上述databases中的central数据库配置，手动创建好数据库
+- 租户编号请在central中央库中进行维护，通过域名识别租户编号需要在central库中的tenant表与domain_tenants表中存在相应配置
+
+## 使用说明
 
     获取租户编号的方式有两种：
     
     一、前端接口请求时在header中携带租户编号，如： X-TENANT-ID:xxxx
 
     二、在请求时通过域名获取租户编号，如：http://baidu.domain.com 内部将通过域名获取租户编号
-    
-    
-- 注：租户编号请在central中央库中进行维护，通过域名识别租户编号需要在central库中的tenant表与domain_tenants表中存在相应配置
 
+### 租户操作
+
+```PHP
+    // 获取租户ID
+    $tenantId = tenancy()->getId();
+    
+    // 执行脚本时，在指定租户内执行业务
+    Tenancy::runForMultiple($tenantId, function ($tenant) {
+            $this->line("Tenant: {$tenant['id']}");
+           // 执行业务。。。。
+    });
+
+    // 执行脚本时，所有租户都执行
+    Tenancy::runForMultiple(null, function ($tenant) {
+            $this->line("Tenant: {$tenant['id']}");
+           // 执行业务。。。。
+    });
+```
+
+#### 数据迁移
+
+- 使用 tenants:migrate-gen 进行创建生成迁移文件， 或通过其他方式创建迁移文件，但需更改迁移文件继承类为TenantMigration
+- --tenants 为可选参数，默认不传递则所有租户执行此迁移，传递租户编号则只执行此租户
+- php bin/hyperf.php tenants的迁移命令都继承于hyperf自身，所以框架自身支持的path，database等参数都支持使用
+
+```
+执行迁移：php bin/hyperf.php tenants:migrate  
+执行回滚：php bin/hyperf.php tenants:rollback 
+执行填充：php bin/hyperf.php tenants:seeder
+```
 
 ### 队列使用
-
-#### 消费端
 
 ```PHP
 <?php
@@ -215,7 +196,7 @@ class TenantJob extends Job
 }
 ```
 
-#### 客户端
+#### 发送队列
 
 ```PHP
 use App\Job\TenantJob;
