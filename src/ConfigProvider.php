@@ -32,6 +32,7 @@ class ConfigProvider
                     Commands\RollbackMigration::class,
                     Commands\ModelMigration::class,
                     Commands\GenMigration::class,
+                    Commands\SeederMigration::class,
                 ],
             ],
             'listeners' => [
