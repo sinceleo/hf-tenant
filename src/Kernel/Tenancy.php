@@ -106,6 +106,14 @@ class Tenancy
     }
 
     /**
+     * 租户数据库表前缀
+     */
+    public static function getTenantDbTablePrefix(): string
+    {
+        return config('tenancy.database.tenant_table_prefix', '');
+    }
+
+    /**
      * 指定租户内执行.
      * @throws TenancyException
      */
@@ -194,6 +202,7 @@ class Tenancy
         if (! config_base()->has($tenantKey)) {
             $tenantDatabaseConfig = config_base()->get($key);
             $tenantDatabaseConfig['database'] = $name;
+            $tenantDatabaseConfig['prefix'] = self::getTenantDbTablePrefix();
             if (isset($tenantDatabaseConfig['cache']['prefix'])) {
                 $tenantDatabaseConfig['cache']['prefix'] .= $id;
             }

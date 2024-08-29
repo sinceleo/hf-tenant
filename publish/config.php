@@ -30,6 +30,8 @@ return [
         'extend_connections' => explode(',', env('TENANCY_EXTEND_CONNECTIONS', '')),
         // 租户数据库前缀
         'tenant_prefix' => 'tenant_',
+        // 租户数据库表前缀
+        'tenant_table_prefix' => '',
         'base_database' => 'base',
     ],
     'cache' => [
