@@ -15,7 +15,7 @@
 ## 安装
 
 ```shell
-  composer require sinceleo/hyperf-tenancy
+  composer require sinceleo/hf-tenant
 ```
 
 # 配置部分
@@ -114,6 +114,44 @@ return [
         ]
     ]
 ];
+```
+
+- 配置文件tenancy.php 可选配置(可根据实际情况自行修改前缀等)
+```PHP
+<?php
+
+use SinceLeo\Tenancy\Kernel\Tenant\Models\Domain;
+use SinceLeo\Tenancy\Kernel\Tenant\Models\Tenants;
+
+return [
+    'tenant_model' => Tenants::class,
+    'domain_model' => Domain::class,
+    // 租户上下文
+    'context' => 'tenant_context',
+    'central_domains' => [
+        '127.0.0.1',
+        'localhost',
+    ],
+    // 忽略的路由
+    'ignore_path' => [],
+    'database' => [
+        // 不允许为default
+        'central_connection' => env('TENANCY_CENTRAL_CONNECTION', 'central'),
+        // 扩展链接
+        'extend_connections' => explode(',', env('TENANCY_EXTEND_CONNECTIONS', '')),
+        // 租户数据库前缀
+        'tenant_prefix' => 'tenant_',
+        // 租户数据库表前缀
+        'tenant_table_prefix' => '',
+        'base_database' => 'base',
+    ],
+    'cache' => [
+        'tenant_prefix' => 'tenant_',
+        'tenant_connection' => 'tenant',
+        'central_connection' => 'central',
+    ],
+];
+
 ```
 
 ## 初始化

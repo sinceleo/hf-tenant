@@ -32,11 +32,15 @@ return [
         'tenant_prefix' => 'tenant_',
         // 租户数据库表前缀
         'tenant_table_prefix' => '',
+        // 基础数据库
         'base_database' => 'base',
     ],
     'cache' => [
+        // 租户缓存前缀
         'tenant_prefix' => 'tenant_',
+        // 租户缓存驱动
         'tenant_connection' => 'tenant',
+        // 缓存驱动
         'central_connection' => 'central',
     ],
 ];
