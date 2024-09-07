@@ -24,7 +24,7 @@
 ## 生成配置文件
 
 ```
-php bin/hyperf.php vendor:publish sinceleo/hyperf-tenancy
+php bin/hyperf.php vendor:publish sinceleo/hf-tenant
 ```
 
 ## 修改缓存配置
